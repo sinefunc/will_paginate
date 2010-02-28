@@ -27,8 +27,8 @@ module WillPaginate
     end
 
     def self.default_behavior
-      if defined?(RAILS_ENV)
-        BEHAVIORS[RAILS_ENV.to_s]
+      if defined?(Rails) && Rails.env
+        BEHAVIORS[Rails.env.to_s]
       else
         BEHAVIORS['test']
       end

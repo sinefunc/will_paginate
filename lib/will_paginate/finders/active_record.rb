@@ -28,12 +28,12 @@ module WillPaginate::Finders
     
     # In Rails, this is automatically called to mix-in pagination functionality to ActiveRecord.
     def self.enable!
-      ActiveRecord::Base.class_eval do
-        extend self
+      ::ActiveRecord::Base.class_eval do
+        extend ::WillPaginate::Finders::ActiveRecord
       end
 
       # support pagination on associations and scopes
-      [ActiveRecord::Relation, ActiveRecord::Associations::AssociationCollection].each do |klass|
+      [::ActiveRecord::Relation, ::ActiveRecord::Associations::AssociationCollection].each do |klass|
         klass.send(:include, self)
       end
     end
